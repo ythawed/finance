@@ -1,0 +1,15 @@
+dependencies {
+//    依赖mysql的jar包
+    compile libs.mysql
+//    依赖entity工程
+    compile project(":entity")
+//    依赖util工程
+    compile project(":util")
+//    依赖swagger工程，生成api文档
+    compile project(":swagger")
+//    依赖api工程,调用其它工程
+    compile project(":api")
+//    mq生产者
+    compile libs.activemq
+    
+}

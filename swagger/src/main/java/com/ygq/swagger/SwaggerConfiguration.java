@@ -1,0 +1,55 @@
+package com.ygq.swagger;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+/**
+ * 自动配置Swagger类
+ * @author ythawed
+ * @date 2019/12/4 0004
+ */
+@Configuration
+@ComponentScan(basePackages = "com.ygq.swagger")
+@EnableSwagger2
+public class SwaggerConfiguration {
+
+    @Autowired
+    private SwaggerInfo swaggerInfo;
+
+    @Bean
+    public Docket controllerApi() {
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName(swaggerInfo.getGroupName())
+                .apiInfo(apiInfo());
+        ApiSelectorBuilder select = docket.select();
+        if (!StringUtils.isEmpty(swaggerInfo.getBasePackage())) {
+            select.apis(RequestHandlerSelectors.basePackage(swaggerInfo.getBasePackage()));
+        }
+        if (!StringUtils.isEmpty(swaggerInfo.getAntPath())) {
+            select.paths(PathSelectors.ant(swaggerInfo.getAntPath()));
+        }
+        return select.build();
+
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title(swaggerInfo.getTitle())
+                .description(swaggerInfo.getDescription())
+                .termsOfServiceUrl("http://springfox.io")
+                .contact("ygq")
+                .license(swaggerInfo.getLicense())
+                .build();
+    }
+}

@@ -1,0 +1,2 @@
+# 此包就是存放rpc服务的服务端，用于向外界提供rpc服务
+- 此处就是通过调用service中的productService服务来生成rpc服务

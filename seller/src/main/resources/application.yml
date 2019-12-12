@@ -1,0 +1,26 @@
+# 配置当前工程服务
+server:
+  # url路径前段
+  context-path: /seller
+  port: 8082
+
+# 配置rpc服务器地址（名称自定义）**注意点，地址需要 / 结尾
+rpc.manager.url: http://localhost:8081/manager/
+
+# 指定spring开启的缓存类型
+spring:
+  cache:
+    type: hazelcast
+      #    暴露mq地址
+  activemq:
+    broker-url: tcp://localhost:61616
+#    指定所有包都可以作为消息类型
+    packages:
+      trust-all: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/financial?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 1014
+  jpa:
+    show-sql: true
