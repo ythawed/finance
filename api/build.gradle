@@ -1,0 +1,4 @@
+dependencies {
+    compile libs.jsonrpc4j
+    compile project(":entity")
+}

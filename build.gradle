@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+group 'com.ygq'
+version '1.0-SNAPSHOT'
+
+// 必须要指向自定义的依赖文件dependencies.gradle，这样最下方的依赖才能正常引用
+apply from:"$rootDir/dependencies.gradle"
+
+// 全局子项目设置subprojects{
+//         }
+subprojects {
+//    此处必须填写，不然会Could not find method compile() for arguments
+    apply plugin: 'java'
+//    项目打包方式
+//    apply plugin: 'war'
+    // 源设置
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+//依赖仓库的位置
+    repositories {
+//    本地
+//    私服
+//    中央仓库
+        mavenCentral()
+    }
+// 引入自定义的依赖文件dependencies.gradle中的依赖
+    dependencies {
+        compile libs.common
+        testCompile libs.test
+    }
+}
+
