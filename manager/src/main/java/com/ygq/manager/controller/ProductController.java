@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,10 +88,11 @@ public class ProductController {
             statusList=Arrays.asList(status.split(","));
         }
 
-        Pageable pageable = new PageRequest(pageNum, pageSize);
-        Page<Product> query = service.query(idList, minRewardRate, maxRewardRate, statusList, pageable);
-        LOG.info("条件查询产品，结果={}", query);
-        return query;
+        //Pageable pageable = new PageRequest(pageNum, pageSize);
+        //Page<Product> query = service.query(idList, minRewardRate, maxRewardRate, statusList, pageable);
+//        LOG.info("条件查询产品，结果={}", query);
+        //return query;
+        return null;
     }
 
 }

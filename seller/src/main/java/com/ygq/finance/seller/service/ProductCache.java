@@ -96,10 +96,7 @@ public class ProductCache {
 
         params.setStatusList(status);
         //设置"Pageable"参数,第0页，每页1000条数据，按收益率逆序，
-        params.setPageNum(0);
-        params.setPageSize(1000);
-        params.setOrderDirection(Sort.Direction.DESC);
-        params.setOrderBy("rewardRate");
+
 
         LOG.info("查询所有在售产品，参数={}",params);
         List<Product> query = productRpc.query(params);

@@ -1,7 +1,7 @@
 ext{
 //    版本号约束
     versions=[
-            springBootVersion:'1.5.4.RELEASE'
+            springBootVersion:'2.2.2.RELEASE'
     ]
 //    第三方jar包依赖
     libs=[

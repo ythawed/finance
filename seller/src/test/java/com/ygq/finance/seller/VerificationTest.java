@@ -1,5 +1,6 @@
 package com.ygq.finance.seller;
 
+import com.ygq.finance.seller.repository.OrderRepository;
 import com.ygq.finance.seller.service.VerificationOrderService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -25,6 +26,13 @@ public class VerificationTest {
 
     @Autowired
     private VerificationOrderService verificationOrderService;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderRepository backupOrderRepository;
+
     /**
      * 测试对账文件的生成
      */
@@ -35,6 +43,7 @@ public class VerificationTest {
         System.out.println(file.getAbsolutePath());
 
     }
+
     /**
      * 测试对账文件的解析
      */
@@ -52,5 +61,23 @@ public class VerificationTest {
         Date time = new GregorianCalendar(2018, 11, 30).getTime();
         List<String> list = verificationOrderService.verifyOrders("002", time);
         list.forEach(System.out::println);
+    }
+
+    /**
+     * 测试主备数据库
+     */
+    @Test
+    public void dTest() {
+        System.out.println(orderRepository.findAll());
+    }
+
+    /**
+     * 测试数据库读写分离
+     */
+    @Test
+    public void eTest() {
+
+        System.out.println(orderRepository.findAll());
+        System.out.println(backupOrderRepository.findAll());
     }
 }

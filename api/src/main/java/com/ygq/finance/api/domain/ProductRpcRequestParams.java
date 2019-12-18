@@ -1,7 +1,5 @@
 package com.ygq.finance.api.domain;
 
-import org.springframework.data.domain.Sort;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -10,8 +8,11 @@ import java.util.List;
  * @date 2019/12/5 0005
  * <p>
  * 封装请求参数，使得请求参数更灵活被使用,本类在ProductRpc中的query(params)中使用
+ *
+ * implements ParamInf是为了能将这些属性被json解析，因为json不能解析复杂对象
+ *
  */
-public class ProductRpcRequestParams {
+public class ProductRpcRequestParams implements ParamInf{
 
     private List<String> idList;
     private BigDecimal minRewardRate;
@@ -20,16 +21,18 @@ public class ProductRpcRequestParams {
 
     private List<String> statusList;
 
-    /**
-     * 下面四个属性是原来的pageable属性，因为jsonrp不能转换复杂对象，所以将复杂对象拆分
-     */
-    private int pageNum;
-    private int pageSize;
-    private Sort.Direction orderDirection;
-    private String orderBy;
+    @Override
+    public String toString() {
+        return "ProductRpcRequestParams{" +
+                "idList=" + idList +
+                ", minRewardRate=" + minRewardRate +
+                ", maxRewardRate=" + maxRewardRate +
+                ", statusList=" + statusList +
+                '}';
+    }
 
 
-
+    @Override
     public List<String> getIdList() {
         return idList;
     }
@@ -38,6 +41,7 @@ public class ProductRpcRequestParams {
         this.idList = idList;
     }
 
+    @Override
     public BigDecimal getMinRewardRate() {
         return minRewardRate;
     }
@@ -46,6 +50,7 @@ public class ProductRpcRequestParams {
         this.minRewardRate = minRewardRate;
     }
 
+    @Override
     public BigDecimal getMaxRewardRate() {
         return maxRewardRate;
     }
@@ -54,43 +59,12 @@ public class ProductRpcRequestParams {
         this.maxRewardRate = maxRewardRate;
     }
 
+    @Override
     public List<String> getStatusList() {
         return statusList;
     }
 
     public void setStatusList(List<String> statusList) {
         this.statusList = statusList;
-    }
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Sort.Direction getOrderDirection() {
-        return orderDirection;
-    }
-
-    public void setOrderDirection(Sort.Direction orderDirection) {
-        this.orderDirection = orderDirection;
-    }
-
-    public String getOrderBy() {
-        return orderBy;
-    }
-
-    public void setOrderBy(String orderBy) {
-        this.orderBy = orderBy;
     }
 }

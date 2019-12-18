@@ -2,7 +2,7 @@ spring:
 #  数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/financial?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/manager?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 1014
   jpa:
@@ -19,10 +19,19 @@ spring:
     pub-sub-domain: true
 
 server:
-  context-path: /manager
+#  spring-boot2.0以上需要将路径配置在servlet下。之前配置在server下即可
+  servlet:
+    context-path: /manager
   port: 8081
+#  配置https加密
+  ssl:
+    enabled: true
+    key-store: file:F:\javaPlugins\tomcat.keystore
+    key-password: 941014
 #  动态配置swagger测试属性，swagger为SwaggerInfo中暴露的@ConfigurationProperties(prefix = "swagger")
 swagger:
   groupName: manager
   basePackage: com.ygq.manager.controller
+
+
 

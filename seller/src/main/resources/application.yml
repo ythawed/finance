@@ -3,6 +3,11 @@ server:
   # url路径前段
   context-path: /seller
   port: 8082
+# 配置https加密
+  ssl:
+    enabled: true
+    key-store: file:F:\javaPlugins\tomcat.keystore
+    key-password: 941014
 
 # 配置rpc服务器地址（名称自定义）**注意点，地址需要 / 结尾
 rpc.manager.url: http://localhost:8081/manager/
@@ -18,9 +23,21 @@ spring:
     packages:
       trust-all: true
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/financial?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
-    username: root
-    password: 1014
+#    主库
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/seller?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 1014
+#   备份库
+    backup:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/seller-backup?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 1014
   jpa:
     show-sql: true
+  swagger:
+    title: 销售端API
+    basePackage: com.ygq.finance.seller.controller
+    description: 第三方销售机构相关的controller方法

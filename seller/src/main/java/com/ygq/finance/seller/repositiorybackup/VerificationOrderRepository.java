@@ -1,4 +1,4 @@
-package com.ygq.finance.seller.repository;
+package com.ygq.finance.seller.repositiorybackup;
 
 import com.ygq.finance.entity.VerificationOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,7 +23,7 @@ public interface VerificationOrderRepository extends JpaRepository<VerificationO
      * 3、查询结果的属性间用'|'连接
      * 4、字符串中时间的写法
      *      1.'%Y-%m-%d %H:%i:%s'
-     *      2."%Y-%m-%d %H:%i:%s'"
+     *      2."%Y-%m-%d %H:%i:%s"
      * @param chanId 渠道id
      * @param start 开始时间
      * @param end  结束时间

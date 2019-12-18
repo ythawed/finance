@@ -3,6 +3,7 @@ package com.ygq.manager.repository;
 import com.ygq.finance.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * JpaSpecificationExecutor<Product> Product表示查询返回的结果，没有String，因为是多条件查询
  */
 @Repository
-public interface ProductRepository extends JpaRepository<Product,String>, JpaSpecificationExecutor<Product> {
+public interface ProductRepository extends CrudRepository<Product,String>, JpaRepository<Product,String>, JpaSpecificationExecutor<Product> {
 
 }

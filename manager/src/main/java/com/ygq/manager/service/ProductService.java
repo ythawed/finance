@@ -93,7 +93,7 @@ public class ProductService {
         LOG.debug("查询单个产品，id={}", id);
 
         Assert.notNull(id, "产品id不能为空");
-        Product product = repository.findOne(id);
+        Product product = repository.getOne(id);
 
         LOG.debug("查询单个产品，结果={}", product);
 

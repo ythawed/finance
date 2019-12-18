@@ -2,7 +2,7 @@ package com.ygq.finance.seller.service;
 
 import com.ygq.finance.entity.VerificationOrder;
 import com.ygq.finance.entity.enums.ChanEnum;
-import com.ygq.finance.seller.repository.VerificationOrderRepository;
+import com.ygq.finance.seller.repositiorybackup.VerificationOrderRepository;
 import org.aspectj.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,7 @@ public class VerificationOrderService {
     /**
      * 指定默认路径为工程/verification/data
      */
-    @Value("${verification.rootDir:F:/javaPlugins/verification/data}")
+    @Value("${verification.rootDir:F:/javaPlugins/verification/data/bbb}")
     private String rootDir;
     /**
      * 时间格式
@@ -90,6 +90,7 @@ public class VerificationOrderService {
         if (!file.exists()) {
             return;
         }
+        System.out.println(file);
         String content = null;
         try {
             content = FileUtil.readAsString(file);
@@ -106,7 +107,7 @@ public class VerificationOrderService {
             //切分
             orders.add(parseLine(line));
         }
-        verificationRepository.save(orders);
+        verificationRepository.saveAll(orders);
     }
 
     /**
